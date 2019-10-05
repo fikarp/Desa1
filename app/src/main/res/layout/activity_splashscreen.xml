@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".splashscreen.SplashscreenActivity"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/desa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Desa"
+            android:layout_marginLeft="52dp"
+            android:layout_marginRight="81dp"
+            android:textSize="36dp"
+            android:textAllCaps="true"
+            android:textColor="@color/colorWhite"
+            />
+
+        <TextView
+            android:id="@+id/prajurit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Prajurit"
+            android:textAllCaps="true"
+            android:textSize="36dp"
+            android:layout_marginLeft="52dp"
+            android:layout_marginRight="81dp"
+            android:textColor="@color/colorWhite"
+            android:layout_below="@+id/desa"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>
