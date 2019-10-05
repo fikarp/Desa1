@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Tombol move to profil
         CardView profil = findViewById(R.id.profile);
         profil.setOnClickListener(new View.OnClickListener() {
             @Override

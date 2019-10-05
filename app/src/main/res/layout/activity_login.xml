@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
     <RelativeLayout
         android:id="@+id/relAtas"
         android:layout_width="match_parent"
@@ -55,9 +54,6 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="20dp">
 
-
-
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,8 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            >
+            android:layout_marginRight="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/username"
@@ -99,8 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            >
+            android:layout_marginRight="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
@@ -123,7 +117,6 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/colorPrimary"/>
-
 
             <Button
                 android:id="@+id/btnLogin"
@@ -156,8 +149,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/style_button"
-                android:textColor="@color/colorWhite"
-                />
+                android:textColor="@color/colorWhite" />
 
         </RelativeLayout>
 
