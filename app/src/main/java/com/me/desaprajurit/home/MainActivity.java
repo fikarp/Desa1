@@ -6,8 +6,11 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.me.desaprajurit.R;
+import com.me.desaprajurit.berita.BeritaActivity;
+import com.me.desaprajurit.login.LoginActivity;
 import com.me.desaprajurit.profile.ProfileActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,12 +20,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Tombol move to profil
-        CardView profil = findViewById(R.id.profile);
-        profil.setOnClickListener(new View.OnClickListener() {
+        TextView login = findViewById(R.id.textLogin);
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getBaseContext(), ProfileActivity.class);
+                Intent i = new Intent(getBaseContext(), LoginActivity.class);
+                startActivity(i);
+            }
+        });
+
+        CardView berita = findViewById(R.id.berita);
+        berita.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(), BeritaActivity.class);
                 startActivity(i);
             }
         });

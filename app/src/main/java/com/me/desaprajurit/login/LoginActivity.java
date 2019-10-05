@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.me.desaprajurit.R;
+import com.me.desaprajurit.home.HomeActivity;
 import com.me.desaprajurit.home.MainActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -21,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getBaseContext(), MainActivity.class);
+                Intent i = new Intent(getBaseContext(), HomeActivity.class);
                 startActivity(i);
             }
         });

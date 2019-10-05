@@ -9,6 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.me.desaprajurit.R;
+import com.me.desaprajurit.home.MainActivity;
 import com.me.desaprajurit.login.LoginActivity;
 
 public class SplashscreenActivity extends AppCompatActivity {
@@ -24,7 +25,7 @@ public class SplashscreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent loginIntent = new Intent(getBaseContext(), LoginActivity.class);
+                Intent loginIntent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(loginIntent);
                 finish();
             }
