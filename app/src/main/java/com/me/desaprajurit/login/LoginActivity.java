@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.me.desaprajurit.R;
 import com.me.desaprajurit.home.HomeActivity;
 import com.me.desaprajurit.home.MainActivity;
+import com.me.desaprajurit.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -23,6 +24,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getBaseContext(), HomeActivity.class);
+                startActivity(i);
+            }
+        });
+
+        Button daftar = findViewById(R.id.btnDaftar);
+        daftar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(), RegisterActivity.class);
                 startActivity(i);
             }
         });
