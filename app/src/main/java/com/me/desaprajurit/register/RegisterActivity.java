@@ -8,6 +8,7 @@ import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -19,23 +20,42 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.kaopiz.kprogresshud.KProgressHUD;
 import com.me.desaprajurit.R;
+import com.me.desaprajurit.home.HomeActivity;
+import com.me.desaprajurit.parameter.StringParameter;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.transform.Templates;
 
@@ -50,7 +70,10 @@ public class RegisterActivity extends AppCompatActivity {
     private static final int PERMS_REQUEST_CODE = 123;
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int SELECT_IMAGE = 5;
-
+    EditText edtUsername, edtPassword, edtNama, edtAlamat, edtNoHp;
+    String sFoto, sUsername, sPassword, sNama, sAlamat, sNoHp;
+    private String URL = StringParameter.URL_BASE+"api-register.php";
+    private String encodedImageProfile;
 
 
     @Override
@@ -74,6 +97,37 @@ public class RegisterActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_back);
+
+        edtUsername = findViewById(R.id.edtUsername);
+        edtNama = findViewById(R.id.edtNama);
+        edtAlamat = findViewById(R.id.edtAlamatUser);
+        edtPassword = findViewById(R.id.edtPassword);
+        edtNoHp = findViewById(R.id.edtNoHp);
+
+
+        Button buttonDaftar = findViewById(R.id.btnDaftar);
+        buttonDaftar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sUsername = edtUsername.getText().toString();
+                sPassword = edtPassword.getText().toString();
+                sNama = edtNama.getText().toString();
+                sNoHp = edtNoHp.getText().toString();
+                sAlamat = edtAlamat.getText().toString();
+
+                if(sUsername.length()>0 && sPassword.length()>0 && sNama.length()>0 && sNoHp.length()>0 && sAlamat.length()>0){
+
+                    if (encodedImageProfile != null ){
+                        register();
+                    } else {
+                        Toast.makeText(getBaseContext(), "foto wajib di masukkan",Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(getBaseContext(), "Semua kolom dan foto wajib diisi",Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
 
         TextView pilihFoto = findViewById(R.id.textFile);
         pilihFoto.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +175,64 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+    private void register(){
+        final KProgressHUD progressDialog=  KProgressHUD.create(this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("Mohon Tunggu...")
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        System.out.println("hasilnya" + response);
+
+                        progressDialog.dismiss();
+                        try {
+                            //Parsing Json
+                            JSONArray jsonArray = new JSONArray(response);
+                            for (int i = 0; i <jsonArray.length(); i++){
+                                JSONObject obj = jsonArray.getJSONObject(i);
+                                 sNama = obj.getString("nama");
+                                 sUsername = obj.getString("username");
+                                 sPassword = obj.getString("password");
+                                 sAlamat = obj.getString("alamat");
+                                 sNoHp = obj.getString("no_hp");
+                                 sFoto = obj.getString("foto");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("username", sUsername);
+                params.put("password", sPassword);
+                params.put("nama", sNama);
+                params.put("alamat", sAlamat);
+                params.put("no_hp", sNoHp);
+                params.put("foto", encodedImageProfile);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
 
     }
 
@@ -225,6 +337,8 @@ public class RegisterActivity extends AppCompatActivity {
                         profile.setImageURI(imageUri);
                         final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                        imageToString(selectedImage);
+                        encodedImageProfile = encodeImage(selectedImage);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -243,6 +357,8 @@ public class RegisterActivity extends AppCompatActivity {
                         ImageView profile = findViewById(R.id.imgFoto);
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                         profile.setImageBitmap(bitmap);
+                        imageToString(bitmap);
+                        encodedImageProfile = encodeImage(bitmap);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -251,5 +367,20 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "Canceled", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public String imageToString(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream);
+        byte[] imgBytes = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(imgBytes, Base64.DEFAULT);
+    }
+
+    public static String encodeImage(Bitmap bm) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG, 10, baos);
+        byte[] b = baos.toByteArray();
+        String encImage = Base64.encodeToString(b, Base64.DEFAULT);
+        return encImage;
     }
 }

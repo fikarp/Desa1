@@ -1,6 +1,7 @@
 package com.me.desaprajurit.berita;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -8,6 +9,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Adapter;
 import android.widget.Toast;
 
@@ -40,9 +42,27 @@ public class BeritaActivity extends AppCompatActivity implements SwipeRefreshLay
     String sId, sBerita, sJudul, sFoto, sStatus, sUserInput;
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_berita);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_back);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         modelArray = new ArrayList<>();
         mRecyclerView = findViewById(R.id.recycleView);
         layoutManager = new LinearLayoutManager(this);

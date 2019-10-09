@@ -11,7 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".wisata.WisataActivity"></activity>
+        <activity android:name=".wisata.WisataActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
