@@ -1,57 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorWhite"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginBottom="2dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginRight="20dp"
     android:padding="4dp">
 
-    <androidx.cardview.widget.CardView
+    <ImageView
+        android:scaleType="fitXY"
+        android:id="@+id/imgGambar"
+        android:src="@drawable/iklantoday"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:tintMode="multiply"
+        android:tint="@color/colorview"/>
+
+    <RelativeLayout
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        app:contentPadding="10dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        app:cardCornerRadius="10dp">
+        android:gravity="bottom"
+        android:layout_gravity="bottom">
 
-        <ImageView
-            android:id="@+id/imgGambar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/iklantoday"
-            android:tintMode="multiply"
-            android:tint="@color/colorview">
-        </ImageView>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textJudul"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:layout_gravity="bottom">
-            <TextView
-                android:id="@+id/textDiskon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorWhite"
-                android:text="Liburan dapat mengurangi tingkat stress" />
+            android:layout_marginLeft="20dp"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            android:text="Diskon 20% hingga Rp15.000" />
 
-            <TextView
-                android:id="@+id/textTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2 hours ago"
-                android:layout_below="@id/textDiskon"
-                android:textColor="@color/colorWhite"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp" />
 
-        </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
-</RelativeLayout>
+    </RelativeLayout>
+</FrameLayout>
