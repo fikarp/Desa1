@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.me.desaprajurit.R;
 import com.me.desaprajurit.berita.BeritaActivity;
+import com.me.desaprajurit.berita.InputBeritaActivity;
 import com.me.desaprajurit.login.LoginActivity;
 import com.me.desaprajurit.profile.ProfileActivity;
 import com.me.desaprajurit.wisata.WisataActivity;
@@ -78,6 +79,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        CardView inputBerita = findViewById(R.id.inputBerita);
+        inputBerita.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(), InputBeritaActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 }

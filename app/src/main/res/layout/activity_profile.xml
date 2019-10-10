@@ -56,15 +56,16 @@
 
         <RelativeLayout
             android:id="@+id/photoProfile"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/relAtas"
-            android:layout_marginTop="-60dp">
+            android:layout_marginTop="-60dp"
+            android:gravity="center">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/profil" />
+                android:id="@+id/imgProfile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
 
         </RelativeLayout>
 

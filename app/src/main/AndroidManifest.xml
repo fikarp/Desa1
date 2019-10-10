@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.me.desaprajurit">
-
+    <!-- Akses Internet -->
     <application
         android:name=".controller.AppController"
         android:allowBackup="true"
@@ -11,20 +11,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".wisata.WisataActivity"
+        <activity android:name=".berita.InputBeritaActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden"></activity>
-
+        <activity
+            android:name=".wisata.WisataActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-
         <activity
             android:name=".home.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".berita.DetailsBeritaActivity"
             android:screenOrientation="portrait"
@@ -66,6 +69,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.me.desaprajurit.fileprovider"
@@ -75,14 +79,14 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-    </application> <!-- Akses Internet -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- Akses Camera -->
+    </application> <!-- Akses Camera -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Akses Data Ponsel (Gambar, musik, video) -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- Akses Data Ponsel (Gambar, musik, video) -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Akses Data Ponsel (Gambar, musik, video) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Akses Lokasi user untuk maps -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Akses Lokasi user untuk maps -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Akses Lokasi user untuk maps -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Akses Lokasi user untuk maps -->
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" /> <!-- Akses Internet -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Akses Internet -->
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />

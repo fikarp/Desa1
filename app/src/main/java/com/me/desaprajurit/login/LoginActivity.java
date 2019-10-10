@@ -44,11 +44,12 @@ import static com.me.desaprajurit.session.SessionKu.session_status;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private String sUsername, sPassword, sNama, sId, sLevel, sAlamat, sNoHp, sFoto;
+    private String sUsername, sPassword, sNama, sId, sLevel, sAlamat, sNoHp;
     EditText edtUsername, edtPassword;
     private String URL = StringParameter.URL_BASE+"api-login.php";
     SharedPreferences sharedpreferences;
     Boolean session = false;
+    public static String sFoto;
     SessionKu prefManager;
 
 

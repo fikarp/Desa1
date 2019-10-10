@@ -6,11 +6,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Adapter;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -27,6 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class BeritaActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
@@ -37,9 +42,13 @@ public class BeritaActivity extends AppCompatActivity implements SwipeRefreshLay
     RecyclerView.LayoutManager layoutManager;
     SwipeRefreshLayout swipe;
 
-
     private String URL = StringParameter.URL_BASE+"api-berita.php";
     String sId, sBerita, sJudul, sFoto, sStatus, sUserInput;
+    public static String URL_FOTO;
+
+    private String[] fotoArray;
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -70,7 +79,11 @@ public class BeritaActivity extends AppCompatActivity implements SwipeRefreshLay
         swipe = findViewById(R.id.swipe);
         swipe.setOnRefreshListener(this);
         getBerita();
+
+
+
     }
+
 
     private void getBerita(){
         modelArray.clear();
@@ -87,21 +100,21 @@ public class BeritaActivity extends AppCompatActivity implements SwipeRefreshLay
                                 sId = obj.getString("id");
                                 sBerita = obj.getString("berita");
                                 sJudul = obj.getString("judul");
-                                sFoto = obj.getString("foto");
+                                sFoto = obj.getString("foto").replace(" ", "%20");
                                 sStatus = obj.getString("status_aktif");
                                 sUserInput = obj.getString("user_input");
-
                                 b.setsJudul(sJudul);
-                                System.out.println("judul" + sJudul);
+                                URL_FOTO= "http://tutechdev.com/FIKAR/" + sFoto;
 
+                                System.out.println("url fotonya" + URL_FOTO);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
                             modelArray.add(b);
                         }
+                        System.out.println("hasil dari foto ini" + sFoto);
                         swipe.setRefreshing(false);
-                        mAdapter = new BeritaAdapter(BeritaActivity.this, modelArray);
+                        mAdapter = new BeritaAdapter(getApplicationContext(), modelArray);
                         mRecyclerView.setAdapter(mAdapter);
                     }
                 },
