@@ -1,6 +1,7 @@
 package com.me.desaprajurit.berita;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,10 +48,21 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
     }
 
     @Override
-    public void onBindViewHolder(BeritaViewHolder holder, int position) {
+    public void onBindViewHolder(BeritaViewHolder holder, final int position) {
         holder.textBerita.setText(dataModel.get(position).getsJudul());
         Picasso.with(context).load(dataModel.get(position).getsFoto()).resize(120, 60).into(holder.gambar);
-
+        holder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String idKu = "id";
+                String idDikirim = dataModel.get(position).getsId();
+                context = view.getContext();
+                Intent intent = new Intent(context, DetailsBeritaActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(idKu, idDikirim);
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -63,39 +76,16 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
     public class BeritaViewHolder extends RecyclerView.ViewHolder{
         private TextView textBerita;
         private ImageView gambar;
+        private FrameLayout item;
 
 
         public BeritaViewHolder(View itemView) {
             super(itemView);
             textBerita = itemView.findViewById(R.id.textJudul);
             gambar = itemView.findViewById(R.id.imgGambar);
-            new DownloadImageTask(gambar)
-                    .execute(BeritaActivity.URL_FOTO);
+            item = itemView.findViewById(R.id.itemBerita);
+//
         }
     }
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
-    }
 }

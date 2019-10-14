@@ -48,5 +48,14 @@ dependencies {
     implementation 'com.kaopiz:kprogresshud:1.2.0'
     // gambar deret
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    //video
+    implementation 'com.github.rtoshiro.fullscreenvideoview:fullscreenvideoview:1.1.2'
+    // Google MAPS
+    implementation 'com.google.android.gms:play-services-maps:11.8.0'
+
+    // Auto Complete Place & location
+    implementation 'com.google.android.gms:play-services-places:11.8.0'
+    implementation 'com.google.android.gms:play-services-location:11.8.0'
+
 
 }

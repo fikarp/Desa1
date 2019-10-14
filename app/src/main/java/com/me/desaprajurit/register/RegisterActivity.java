@@ -40,6 +40,7 @@ import com.android.volley.toolbox.Volley;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.me.desaprajurit.R;
 import com.me.desaprajurit.home.HomeActivity;
+import com.me.desaprajurit.login.LoginActivity;
 import com.me.desaprajurit.parameter.StringParameter;
 import com.theartofdev.edmodo.cropper.CropImage;
 
@@ -204,6 +205,9 @@ public class RegisterActivity extends AppCompatActivity {
                                  sAlamat = obj.getString("alamat");
                                  sNoHp = obj.getString("no_hp");
                                  sFoto = obj.getString("foto");
+
+                                 Intent in = new Intent(getBaseContext(), LoginActivity.class);
+                                 startActivity(in);
                             }
 
                         } catch (JSONException e) {

@@ -100,10 +100,13 @@ public class BeritaActivity extends AppCompatActivity implements SwipeRefreshLay
                                 sId = obj.getString("id");
                                 sBerita = obj.getString("berita");
                                 sJudul = obj.getString("judul");
-                                sFoto = obj.getString("foto").replace(" ", "%20");
+                                sFoto = obj.getString("foto");
                                 sStatus = obj.getString("status_aktif");
                                 sUserInput = obj.getString("user_input");
                                 b.setsJudul(sJudul);
+                                b.setsFoto(URL_FOTO);
+                                b.setsId(sId);
+
                                 URL_FOTO= "http://tutechdev.com/FIKAR/" + sFoto;
 
                                 System.out.println("url fotonya" + URL_FOTO);

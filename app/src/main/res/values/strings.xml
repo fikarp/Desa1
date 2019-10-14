@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Desa Prajurit</string>
     <string name="devicenotsupportcropaction">Camera tidak support</string>
+    <string name="title_activity_maps_wisata">Map</string>
 </resources>

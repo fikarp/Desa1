@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Berita"
+                android:text="Video"
                 android:layout_marginLeft="30dp"
                 android:textAllCaps="true"
                 android:textColor="@color/colorWhite"
@@ -36,63 +36,55 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:showIn="@layout/activity_detail_wisata"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/relAtas"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/background">
+
+
+            </RelativeLayout>
 
 
             <RelativeLayout
                 android:id="@+id/iklan"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@id/relAtas">
-
-                <ImageView
-                    android:id="@+id/imgDetails"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/iklan"
-                    android:scaleType="fitXY">
-
-                </ImageView>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-100dp"
+                android:layout_below="@id/relAtas"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/iklan">
 
             </RelativeLayout>
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/iklan">
+           <VideoView
+               android:id="@+id/videoku"
+               android:layout_width="match_parent"
+               android:layout_height="200dp"
+               android:layout_below="@id/iklan"
+               android:layout_marginTop="10dp"
+               android:layout_marginRight="20dp"
+               android:layout_marginLeft="20dp"
+               android:layout_marginBottom="20dp"/>
 
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/iklan">
-
-
-            <TextView
-                android:id="@+id/textJudul"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:layout_marginRight="20dp"/>
-
-            <TextView
-                android:id="@+id/textBerita"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textJudul"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginRight="20dp"/>
-            </RelativeLayout>
-            </ScrollView>
-
+<!--            <com.github.rtoshiro.view.video.FullscreenVideoLayout-->
+<!--                android:id="@+id/videoview"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_below="@id/iklan"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginBottom="20dp"/>-->
+        </RelativeLayout>
 
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

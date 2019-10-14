@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/activity_detail_wisata"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/relAtas"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/background">
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/iklan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-100dp"
+            android:layout_below="@id/relAtas"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <ImageView
+                android:id="@+id/imgGambar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iklan"
+                android:scaleType="fitXY"/>
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_below="@id/iklan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iklan"
+            android:layout_marginTop="10dp">
+
+
+            <TextView
+                android:id="@+id/isiDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:text=""
+                />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/sejarahKampung"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                app:cardCornerRadius="5dp"
+                android:layout_below="@id/isiDetail"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sejarah"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="18dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/video"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                app:cardCornerRadius="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/sejarahKampung">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Video"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="18dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                app:cardCornerRadius="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/video"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Map"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="18dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+</LinearLayout>

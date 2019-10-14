@@ -15,6 +15,7 @@ import com.me.desaprajurit.berita.BeritaActivity;
 import com.me.desaprajurit.login.LoginActivity;
 import com.me.desaprajurit.profile.ProfileActivity;
 import com.me.desaprajurit.session.SessionKu;
+import com.me.desaprajurit.wisata.WisataActivity;
 
 import static com.me.desaprajurit.session.SessionKu.TAG_ID;
 import static com.me.desaprajurit.session.SessionKu.TAG_USERNAME;
@@ -60,5 +61,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        CardView kPrajurit = findViewById(R.id.kampungPrajurit);
+        kPrajurit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(), WisataActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 }
